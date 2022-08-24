@@ -23,7 +23,8 @@ const VideoHorizontal = ({video,searchScreen,subScreen}) => {
     },
  } = video
 
- const isVideo = !(id.kind === 'youtube#video'|| subScreen)
+ const isVideo = !(id.kind === 'youtube#channel'|| subScreen)
+ console.log(isVideo)
  const [views, setViews] = useState(null)
   const [duration, setDuration] = useState(null)
   const [channelIcon, setChannelIcon] = useState(null)
@@ -39,8 +40,7 @@ const VideoHorizontal = ({video,searchScreen,subScreen}) => {
     setDuration(items[0].contentDetails.duration)
     setViews(items[0].statistics.viewCount)
   }
-  if(isVideo)
-    get_video_details()
+   get_video_details()
 }, [id,isVideo])
 
 useEffect(() => {
@@ -80,7 +80,6 @@ useEffect(() => {
           {
             isVideo && (<span className='videoHorizontal__duration'>{_duration}</span>)
           }
-        
       </Col>
       <Col xs={6} md={searchScreen || subScreen ? 8:6} className='videoHorizontal__right p-0'>
         <p className="videoHorizontal__title mb-1">

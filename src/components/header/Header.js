@@ -4,6 +4,7 @@ import { FaBars } from 'react-icons/fa'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { MdNotifications, MdApps } from 'react-icons/md'
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Header = ({handleToggleSidebar}) => {
 
@@ -14,6 +15,7 @@ const Header = ({handleToggleSidebar}) => {
     e.preventDefault()
     history.push(`/search/${input}`)
   }
+  const {photoURL} = useSelector(state=> state.auth?.user)
   
   return (
     <div className=' header'>
@@ -37,8 +39,8 @@ const Header = ({handleToggleSidebar}) => {
         <MdNotifications size={28} />
         <MdApps size={28} />
         <img 
-          src='https://www.pngitem.com/pimgs/m/560-5603874_product-image-logo-avatar-minimalist-flat-line-hd.png'
-          alt=''
+          src={photoURL}
+          alt='avatar'
         />
       </div>
 

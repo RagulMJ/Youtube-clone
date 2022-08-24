@@ -25,10 +25,12 @@ const logOutHandler = () => {
     <nav className={sidebar ? "sidebar open" : "sidebar"}
     onClick={() => handleToggleSidebar(false)}
     >
+      <Link to='/'>
       <li>
         <MdHome size={23} />
         <span>Home</span>
       </li>
+      </Link>
       <Link to='/feed/subscriptions'>
       <li>
         <MdSubscriptions size={23} />
