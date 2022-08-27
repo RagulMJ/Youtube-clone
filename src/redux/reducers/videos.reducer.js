@@ -1,4 +1,4 @@
-import { HOME_VIDEOS_FAIL, HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL, RELATED_VIDEO_REQUEST, RELATED_VIDEO_SUCCESS, RELATED_VIDEO_FAIL, SEARCHED_VIDEO_REQUEST, SEARCHED_VIDEO_SUCCESS, SEARCHED_VIDEO_FAIL, SUBSCRIPTIONS_CHANNEL_REQUEST, SUBSCRIPTIONS_CHANNEL_SUCCESS, SUBSCRIPTIONS_CHANNEL_FAIL, CHANNEL_DETAILS_REQUEST, CHANNEL_VIDEOS_REQUEST, CHANNEL_VIDEOS_SUCCESS, CHANNEL_VIDEOS_FAIL } from "../actionType"
+import { HOME_VIDEOS_FAIL, HOME_VIDEOS_REQUEST, HOME_VIDEOS_SUCCESS, SELECTED_VIDEO_REQUEST, SELECTED_VIDEO_SUCCESS, SELECTED_VIDEO_FAIL, RELATED_VIDEO_REQUEST, RELATED_VIDEO_SUCCESS, RELATED_VIDEO_FAIL, SEARCHED_VIDEO_REQUEST, SEARCHED_VIDEO_SUCCESS, SEARCHED_VIDEO_FAIL, SUBSCRIPTIONS_CHANNEL_REQUEST, SUBSCRIPTIONS_CHANNEL_SUCCESS, SUBSCRIPTIONS_CHANNEL_FAIL, CHANNEL_DETAILS_REQUEST, CHANNEL_VIDEOS_REQUEST, CHANNEL_VIDEOS_SUCCESS, CHANNEL_VIDEOS_FAIL, LIKED_VIDEOS_REQUEST, LIKED_VIDEOS_SUCCESS, LIKED_VIDEOS_FAIL } from "../actionType"
 
 export const homeVideosReducer = (
     state = {
@@ -184,6 +184,38 @@ export const channelVideosReducer = (
         case CHANNEL_VIDEOS_FAIL:
             return {
                 ...state,
+                loading: false,
+                error: payload,
+            }
+        default:
+            return state
+    }
+}
+
+export const likedVideosReducer = (
+    state = {
+        loading: true,
+        videos: [],
+    },
+    action
+) => {
+    const { payload, type } = action
+    switch (type) {
+        case LIKED_VIDEOS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case LIKED_VIDEOS_SUCCESS:
+            return {
+                ...state,
+                videos: payload,
+                loading: false,
+            }
+        case LIKED_VIDEOS_FAIL:
+            return {
+                ...state,
+                videos: null,
                 loading: false,
                 error: payload,
             }

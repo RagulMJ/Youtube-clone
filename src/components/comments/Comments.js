@@ -4,6 +4,18 @@ import Comment from '../comment/Comment'
 import { useDispatch, useSelector } from 'react-redux'
 import { addComment, getCommentsOfVideoById } from '../../redux/actions/comments.action'
 
+
+const Photo = () => {
+  const { photoURL } = useSelector(state => state.auth?.user)
+  return (
+    <img
+      src={photoURL}
+      alt='avatar'
+      className='rounded-circle mr-3'
+    ></img>
+  )
+}
+
 const Comments = ({videoId,totalComments}) => {
 
   const dispatch = useDispatch()
@@ -16,7 +28,9 @@ const Comments = ({videoId,totalComments}) => {
   const _comments = comments?.map(comment=>comment.snippet.topLevelComment.snippet)
 
   const [text,setText] = useState('')
-  const {photoURL} = useSelector(state=> state.auth?.user)
+  // const {photoURL} = useSelector(state=> state.auth?.user)
+  const { login } = useSelector(state => state.auth)
+
 
 
   const handleComment = (e) => {
@@ -31,11 +45,15 @@ const Comments = ({videoId,totalComments}) => {
     <div className='comments'>
       <p>{totalComments} comments</p>
       <div className="comments_form d-flex w-100 my-2">
-        <img
-            src={photoURL}
-            alt=''
-            className='rounded-circle mr-3'
-        />
+      {
+          login ?
+            <Photo />
+            :
+            <img
+              src=''
+              alt='avatar'
+            ></img>
+        }
         <form onSubmit={handleComment} 
         className="d-flex flex-grow-1">
         <input 

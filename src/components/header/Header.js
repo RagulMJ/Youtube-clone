@@ -2,27 +2,40 @@ import React, { useState } from 'react'
 import './_header.scss'
 import { FaBars } from 'react-icons/fa'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { MdNotifications, MdApps,MdOutlineVideoCall } from 'react-icons/md'
+import { MdNotifications, MdApps, MdOutlineVideoCall } from 'react-icons/md'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
-const Header = ({handleToggleSidebar}) => {
 
-  const [photo,setPhoto] = useState(null)
-  const[input,setInput] = useState('')
+const Photo = () => {
+  const { photoURL } = useSelector(state => state.auth?.user)
+  return (
+    <img
+      src={photoURL}
+      alt='avatar'
+    ></img>
+  )
+}
+
+const Header = ({ handleToggleSidebar }) => {
+
+  const [photo, setPhoto] = useState(null)
+  const [input, setInput] = useState('')
 
   const history = useHistory()
   const handleSubmit = (e) => {
     e.preventDefault()
     history.push(`/search/${input}`)
   }
-  const {photoURL} = useSelector(state=> state.auth?.user)
-  
+
+  // const {photoURL} = useSelector(state=> state.auth?.user)
+  const { login } = useSelector(state => state.auth)
+
   return (
     <div className=' header'>
-      <FaBars className='header__menu' 
-      size={26} 
-      onClick={() => handleToggleSidebar()}
+      <FaBars className='header__menu'
+        size={26}
+        onClick={() => handleToggleSidebar()}
       />
 
       <img
@@ -37,13 +50,17 @@ const Header = ({handleToggleSidebar}) => {
         </button>
       </form>
       <div className='header__icons'>
-        <MdOutlineVideoCall size={28} />
+        <MdNotifications size={28} />
         <MdApps size={28} />
-        <img 
-          src={photoURL}
-          // src=''
-          alt='avatar'
-        />
+        {
+          login ?
+            <Photo />
+            :
+            <img
+              src=''
+              alt='avatar'
+            ></img>
+        }
       </div>
 
     </div>

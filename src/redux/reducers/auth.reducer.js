@@ -9,7 +9,7 @@ import {
 const initialState = {
     accessToken:sessionStorage.getItem("ytc-access-token") ? sessionStorage.getItem("ytc-access-token"):null,
     user:sessionStorage.getItem("ytc-user") ? JSON.parse(sessionStorage.getItem("ytc-user")) : null,
-    loading:false
+    loading:false,
 }
 
 export const authReducer = (prevState = initialState , action) => {
@@ -39,6 +39,7 @@ const {type,payload} = action
             return{
                 ...prevState,
                 user: payload,
+                login:true,
             }
         case LOG_OUT:
             return{

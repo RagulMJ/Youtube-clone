@@ -13,6 +13,7 @@ import SubscriptionsScreen from './screen/subscriptionsScreen/SubscriptionsScree
 import ChannelScreen from './screen/channelScreen/ChannelScreen'
 import UploadScreen from './screen/uploadScreen/UploadScreen'
 import Upload from './components/upload/Upload'
+import LikedScreen from './screen/likedScreen/LikedScreen'
 
 
 
@@ -90,10 +91,14 @@ useEffect(() => {
             <Upload/>
           </Layout>
         </Route>
+        <Route path='/liked'>
+          <Layout>
+            <LikedScreen />
+          </Layout>
+        </Route>
         <Route>
           <Redirect to='/' />
         </Route>
-
       </Switch>
 
   )

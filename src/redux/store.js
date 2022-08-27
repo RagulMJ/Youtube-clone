@@ -3,7 +3,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import {authReducer} from './reducers/auth.reducer'
 import { homeVideosReducer,relatedVideoReducer,searchedVideosReducer } from './reducers/videos.reducer'
-import { selectedVideoReducer,subscriptionsChannelReducer,channelVideosReducer } from './reducers/videos.reducer'
+import { selectedVideoReducer,subscriptionsChannelReducer,channelVideosReducer,likedVideosReducer } from './reducers/videos.reducer'
 import {channelDetailsReducer} from './reducers/channel.reducer'
 import { commentListReducer } from './reducers/comments.reducer'
 
@@ -18,6 +18,7 @@ const rootReducer = combineReducers({
     searchedVideos: searchedVideosReducer,
     subscriptionsChannel: subscriptionsChannelReducer,
     channelVideos: channelVideosReducer,
+    likedVideos: likedVideosReducer,
     
 })
 

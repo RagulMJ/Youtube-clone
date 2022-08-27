@@ -3,6 +3,7 @@ import './_uploadScreen.scss'
 import axios from 'axios'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 
 const UploadScreen = () => {
 
@@ -17,7 +18,6 @@ const UploadScreen = () => {
             setFile(e.target.files[0]);
         }
     }
-    console.log(files)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,7 +36,6 @@ const UploadScreen = () => {
     const fetchFiles = useCallback(async () => {
         const res = await axios.get("http://localhost:3003/files");
         setFiles(res.data);
-        console.log(res.data);
     }, []);
 
     const removeFile = useCallback(
@@ -65,40 +64,41 @@ const UploadScreen = () => {
             <Row>
                 <Col>
                     <form onSubmit={handleSubmit} encType='multipart/form-data'>
-                        <input type='file' name='file' className='p-2 rounded' onChange={handleFile} required />
-                        <button className='upload__button' type='submit'>
+                        <input type='file' name='file' className='p-2 rounded btn btn-gray' onChange={handleFile} required />
+                        <button className='btn btn-primary' type='submit'>
                             UPLOAD
                         </button>
                     </form>
                 </Col>
             </Row>
             <Row>
-                <Col lg={3} md={3}>
+                <Col className='d-flex align-items-center justify-content-center mt-4'>
                     {files.map((file, i) => (
                         <div key={file._id} className="Item">
-                            <Row>
-                                <Col>
-                                    <video width={320} height={240} controls>
-                                        <source src={`http://localhost:3003/read/${file.filename}`} type='video/mp4' />
-                                        {/* <a
-                                        className="Link"
-                                        href={`http://localhost:3001/read/${file.filename}`}
-                                        > */}
-                                        {/* </a> */}
-                                    </video>
-                                </Col>
-                                <Col>
-                                    <p className='text-center'>{file.filename}</p>
-                                    <button
-                                        type="button"
-                                        onClick={() => {
-                                            removeFile(file.filename, i);
-                                        }}
-                                    >
-                                        remove
-                                    </button>
-                                </Col>
-                            </Row>
+
+                            <video width={500} height={320} controls>
+                                <source src={`http://localhost:3003/read/${file.filename}`} type='video/mp4' />
+                            </video>
+                            {/* <iframe src={`http://localhost:3003/read/${file.filename}`}
+                                        frameBorder={0}
+                                        title={file.filename}
+                                        allowFullScreen
+                                        width='500'
+                                        height='300'
+                                    ></iframe> */}
+                            {/* <ReactPlayer controls url={`http://localhost:3003/read/${file.filename}`} /> */}
+                            <p className='text-center'>{file.filename}</p>
+                            <div className='text-center'>
+                                <button
+                                    type="button"
+                                    className='btn btn-danger'
+                                    onClick={() => {
+                                        removeFile(file.filename, i);
+                                    }}
+                                >
+                                    remove
+                                </button>
+                            </div>
                         </div>
                     ))}
                 </Col>

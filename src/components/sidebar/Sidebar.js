@@ -41,11 +41,12 @@ const logOutHandler = () => {
         <span>Subscriptions</span>
       </li>
       </Link>
-      
+      <Link to='/liked'>
       <li>
         <MdThumbUp size={23} />
         <span>Liked Video</span>
       </li>
+      </Link>
       <li>
         <MdHistory size={23} />
         <span>History</span>
@@ -63,6 +64,9 @@ const logOutHandler = () => {
       <hr />
       <li onClick={logOutHandler}>
         <MdExitToApp size={23} />
+        <Helmet>
+          <title>Youtube-clone</title>
+        </Helmet>
         <span>Log Out</span>
       </li>
       <hr />
