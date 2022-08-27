@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import './_header.scss'
 import { FaBars } from 'react-icons/fa'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { MdNotifications, MdApps } from 'react-icons/md'
+import { MdNotifications, MdApps,MdOutlineVideoCall } from 'react-icons/md'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 const Header = ({handleToggleSidebar}) => {
 
+  const [photo,setPhoto] = useState(null)
   const[input,setInput] = useState('')
 
   const history = useHistory()
@@ -36,10 +37,11 @@ const Header = ({handleToggleSidebar}) => {
         </button>
       </form>
       <div className='header__icons'>
-        <MdNotifications size={28} />
+        <MdOutlineVideoCall size={28} />
         <MdApps size={28} />
         <img 
           src={photoURL}
+          // src=''
           alt='avatar'
         />
       </div>

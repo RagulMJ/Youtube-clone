@@ -12,6 +12,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { log_out } from '../../redux/actions/auth.action'
 import {Link} from 'react-router-dom'
+import {Helmet } from 'react-helmet'
 
 const Sidebar = ({ sidebar , handleToggleSidebar }) => {
 
@@ -28,6 +29,9 @@ const logOutHandler = () => {
       <Link to='/'>
       <li>
         <MdHome size={23} />
+        <Helmet>
+          <title>Youtube-clone</title>
+        </Helmet>
         <span>Home</span>
       </li>
       </Link>
@@ -50,11 +54,12 @@ const logOutHandler = () => {
         <MdLibraryBooks size={23} />
         <span>Libray</span>
       </li>
+      <Link to='/upload'>
       <li>
         <MdSentimentDissatisfied size={23} />
         <span>I don't Know</span>
       </li>
-
+      </Link>
       <hr />
       <li onClick={logOutHandler}>
         <MdExitToApp size={23} />
