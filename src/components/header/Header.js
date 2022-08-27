@@ -30,6 +30,9 @@ const Header = ({ handleToggleSidebar }) => {
 
   // const {photoURL} = useSelector(state=> state.auth?.user)
   const { login } = useSelector(state => state.auth)
+  const home = () => {
+    history.push('/')
+  }
 
   return (
     <div className=' header'>
@@ -42,6 +45,8 @@ const Header = ({ handleToggleSidebar }) => {
         src='https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg'
         alt=''
         className='header__logo'
+        onClick={home}
+        style={{cursor:'pointer'}}
       />
       <form onSubmit={handleSubmit}>
         <input type='text' placeholder='Search' value={input} onChange={e => setInput(e.target.value)} />

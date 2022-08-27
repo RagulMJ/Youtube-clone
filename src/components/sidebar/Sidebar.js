@@ -58,7 +58,7 @@ const logOutHandler = () => {
       <Link to='/upload'>
       <li>
         <MdSentimentDissatisfied size={23} />
-        <span>I don't Know</span>
+        <span>Uploads</span>
       </li>
       </Link>
       <hr />
