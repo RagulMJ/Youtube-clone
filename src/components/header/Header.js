@@ -62,7 +62,7 @@ const Header = ({ handleToggleSidebar }) => {
             <Photo />
             :
             <img
-              src=''
+              src={require('../../image/avatar.png')}
               alt='avatar'
             ></img>
         }

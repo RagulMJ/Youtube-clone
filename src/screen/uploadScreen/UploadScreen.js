@@ -26,7 +26,7 @@ const UploadScreen = () => {
 
             fd.append("file", file);
 
-            const res = await axios.post("http://localhost:3003/upload", fd);
+            const res = await axios.post("https://youtube-clone-rj.herokuapp.com/upload", fd);
 
             setFiles(files.concat(res.data));
             console.log(res.data);
@@ -34,14 +34,14 @@ const UploadScreen = () => {
     }
 
     const fetchFiles = useCallback(async () => {
-        const res = await axios.get("http://localhost:3003/files");
+        const res = await axios.get("https://youtube-clone-rj.herokuapp.com/files");
         setFiles(res.data);
     }, []);
 
     const removeFile = useCallback(
         async (filename, index) => {
             const res = await axios.delete(
-                `http://localhost:3003/delete/${filename}`
+                `https://youtube-clone-rj.herokuapp.com/delete/${filename}`
             );
             if (res.status === 200) {
                 let temp = [...files];
@@ -77,16 +77,8 @@ const UploadScreen = () => {
                         <div key={file._id} className="Item">
 
                             <video width={500} height={320} controls>
-                                <source src={`http://localhost:3003/read/${file.filename}`} type='video/mp4' />
+                                <source src={`https://youtube-clone-rj.herokuapp.com/read/${file.filename}`} type='video/mp4' />
                             </video>
-                            {/* <iframe src={`http://localhost:3003/read/${file.filename}`}
-                                        frameBorder={0}
-                                        title={file.filename}
-                                        allowFullScreen
-                                        width='500'
-                                        height='300'
-                                    ></iframe> */}
-                            {/* <ReactPlayer controls url={`http://localhost:3003/read/${file.filename}`} /> */}
                             <p className='text-center'>{file.filename}</p>
                             <div className='text-center'>
                                 <button

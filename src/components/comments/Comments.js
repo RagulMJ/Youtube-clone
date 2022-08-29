@@ -50,8 +50,8 @@ const Comments = ({videoId,totalComments}) => {
             <Photo />
             :
             <img
-              src=''
-              alt='avatar'
+              src={require('../../image/avatar.png')}
+              alt=''
             ></img>
         }
         <form onSubmit={handleComment} 

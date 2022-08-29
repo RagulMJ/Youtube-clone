@@ -12,7 +12,6 @@ import SearchScreen from './screen/SearchScreen'
 import SubscriptionsScreen from './screen/subscriptionsScreen/SubscriptionsScreen'
 import ChannelScreen from './screen/channelScreen/ChannelScreen'
 import UploadScreen from './screen/uploadScreen/UploadScreen'
-import Upload from './components/upload/Upload'
 import LikedScreen from './screen/likedScreen/LikedScreen'
 
 
@@ -84,11 +83,6 @@ useEffect(() => {
         <Route path='/upload'>
           <Layout>
             <UploadScreen/>
-          </Layout>
-        </Route>
-        <Route path='/upload_watch/:filename'>
-          <Layout>
-            <Upload/>
           </Layout>
         </Route>
         <Route path='/liked'>
